@@ -1,0 +1,123 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+*::-webkit-inner-spin-button {
+	display: none;
+}
+:root {
+	--cor1: #222999;
+	--cor2: #222fff;
+}
+html,
+body {
+	background-color: #fff;
+	height: 100vh;
+	position: relative;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	overflow: hidden;
+}
+
+.div_top {
+	background-image: linear-gradient(var(--cor1), var(--cor2));
+	color: #fff;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	width: 100vw;
+	height: 12vh;
+}
+.div_top div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.div_top i {
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.div_bot {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100vw;
+	gap: 1.5vh;
+	background-color: #fef;
+	overflow: hidden;
+}
+.div_bot > div {
+	display: flex;
+	justify-content: space-between;
+	width: 100%;
+	padding: 16px;
+	background-color: #fff;
+	box-shadow: 0px 0px 10px #000000;
+}
+.div_bot .div_value {
+	min-height: 14vh;
+	max-height: 14vh;
+	font-size: 1.1rem;
+}
+.div_bot .div_value span {
+	color: black;
+	font-size: 2.4rem;
+}
+.div_bot .div_value .left span:nth-child(2) {
+	color: var(--cor1);
+}
+.div_bot .div_payments {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: start;
+	min-height: 17vh;
+	max-height: 17vh;
+	gap: 20px;
+	padding: 10px 20px;
+	color: var(--cor1);
+	font-weight: bold;
+	overflow: auto;
+}
+.div_bot .div_payments p {
+	position: fixed;
+	font-size: 1.2rem;
+	transition: 0.5s;
+}
+.div_bot .div_payments .payment_values {
+	display: flex;
+	margin-top: 10%;
+	flex-direction: column;
+	gap: 10px;
+}
+.div_bot .div_payments span {
+	position: relative;
+	color: #000;
+}
+.div_bot .div_btns {
+	display: flex;
+	min-height: 40vh;
+	flex-direction: column;
+	justify-content: start;
+	gap: 3vh;
+	overflow: auto;
+}
+.div_bot .div_btns input {
+	background-color: var(--cor1);
+	font-weight: bold;
+	font-size: 1rem;
+	letter-spacing: 2px;
+	color: #fff;
+	border-radius: 20px;
+	min-height: 9vh;
+	box-shadow: 5px 5px 5px #00000090;
+	transition: 0.2s;
+}
+.div_bot .div_btns input:hover {
+	background-color: red;
+}

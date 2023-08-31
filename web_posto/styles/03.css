@@ -1,0 +1,104 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+html,
+body {
+	background-color: #fff;
+	height: 100vh;
+	position: relative;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	overflow: hidden;
+}
+
+.background_top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #222;
+	width: 100vw;
+	height: 20vh;
+}
+.div_top {
+	color: #fff;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	width: 100vw;
+	height: 10vh;
+}
+.div_top div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.div_top i {
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.div_bot {
+	position: relative;
+	display: flex;
+	flex-direction: column;
+    align-items: center;
+	gap: 3%;
+	width: 100vw;
+	height: 90vh;
+	border-radius: 40px 40px 0 0;
+	padding: 5%;
+	background-color: #fef;
+	overflow: auto;
+}
+.div_bot .hose_value {
+    width: 85vw;
+    border-radius: 20px;
+    background-color: white;
+    box-shadow: 5px 5px 5px #00000090, inset 5px 5px 5px #cacaca;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    transition: .2s;
+}
+.div_bot .hose_value:hover {
+    transform: scale(1.05);
+}
+.div_bot .hose_value .top {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.div_bot .hose_value .top .top_left {
+    display: flex;
+    align-items: center;
+    min-width: 50%;
+    font-size: 1.5rem;
+    font-weight: bold;
+    font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+}
+.div_bot .hose_value .top .top_right {
+    display: flex;
+    align-self: center;
+    width: 50%;
+    max-height: 10vh;
+    font-size: 1.1rem;
+    overflow: hidden;
+}
+.div_bot .hose_value .bot {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    border-top: 1px solid #000;
+}
+.div_bot .hose_value .bot p {
+    display: flex;
+    align-items: center;
+}
+.div_bot .hose_value .bot i {
+    color: #ffa500;
+}

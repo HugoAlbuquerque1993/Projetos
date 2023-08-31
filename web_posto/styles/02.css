@@ -1,0 +1,134 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+html,
+body {
+	background-color: #fff;
+	height: 100vh;
+	position: relative;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	overflow: hidden;
+}
+
+.background_top {
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: #222;
+	width: 100vw;
+	height: 20vh;
+}
+.div_top {
+	color: #fff;
+	position: relative;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	width: 100vw;
+	height: 10vh;
+}
+.div_top div {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+.div_top i {
+	font-size: 30px;
+	cursor: pointer;
+}
+
+.div_bot {
+	position: relative;
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	align-content: flex-start;
+	gap: 4% 5%;
+	width: 100vw;
+	height: 76vh;
+	border-radius: 40px 40px 0 0;
+	padding: 5%;
+	background-color: #fef;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+.div_bot .hose {
+	position: relative;
+	width: 45%;
+	background-color: #fff;
+	padding: 10px;
+	display: flex;
+	flex-direction: column;
+	border-radius: 20px;
+	box-shadow: 5px 5px 5px #00000090, inset 5px 5px 5px #cacaca;
+	cursor: pointer;
+	transition: 0.2s;
+}
+.div_bot .hose:hover {
+	transform: scale(1.05);
+}
+.div_bot .hose .top {
+	display: flex;
+	align-items: center;
+	justify-content: flex-end;
+	border-bottom: 1px solid #222;
+	padding: 10px;
+	font-size: 1.4rem;
+}
+.div_bot .hose .top i {
+	color: #0a0;
+	font-size: 60px;
+	position: absolute;
+	left: 10px;
+	top: 8%;
+}
+.div_bot .hose .bot {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	text-align: end;
+	padding: 5px;
+	font-size: .9rem;
+	font-weight: bold;
+}
+.div_bot .hose .bot h2 {
+	padding: 4px 4px;
+	border-radius: 50%;
+	color: #fff;
+	background-color: #f00;
+}
+
+#add_value {
+	position: absolute;
+	bottom: 16vh;
+	right: 2vw;
+	font-size: 5rem;
+	color: #c3c;
+	animation: change_color 3s infinite linear;
+	cursor: pointer;
+	transition: 1s;
+	z-index: 1;
+}
+#add_value:hover {
+	animation: none;
+	scale: 1.2;
+}
+@keyframes change_color {
+	0% {
+		color: #c3c;
+		transform: rotate(180deg);
+	}
+	50% {
+		color: #c90;
+		transform: rotate(0deg);
+	}
+	100% {
+		color: #c3c;
+		transform: rotate(0deg);
+	}
+}
+
