@@ -19,12 +19,9 @@ export function footer_div(div) {
   `
 
 	document.querySelector(".footer").style = `
-    position: absolute;
-    top: 84vh;
     background-color: #fff;
     padding: 2px 20px;
-    width: 100%;
-    height: 10%;
+    width: clamp(380px, 100vw, 450px);
     box-shadow: 0px -5px 5px #00000030;
   `
 

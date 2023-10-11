@@ -1,0 +1,25 @@
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	user-select: none;
+}
+*::-webkit-inner-spin-button {
+	display: none;
+}
+html,
+body {
+	background-color: #333;
+	font-family: "Lucida Sans", "Lucida Sans Regular", "Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+}
+section {
+	position: relative;
+	background-color: #fff;
+	width: clamp(380px, 100vw, 450px);
+	min-height: 100vh;
+	overflow: hidden;
+}
