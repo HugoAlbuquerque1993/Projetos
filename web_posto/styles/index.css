@@ -60,6 +60,7 @@
 .bot_div input {
 	width: 100%;
 	height: clamp(40px, 15vh, 60px);
+	border: 1px solid #000000aa;
 	border-radius: 20px;
 	font-size: 1.5rem;
 	text-indent: 20px;

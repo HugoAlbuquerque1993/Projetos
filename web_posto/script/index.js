@@ -72,7 +72,7 @@ function campo_cadastro() {
 	const back_div = document.createElement("div")
 	back_div.setAttribute("class", "back_div")
 	back_div.innerHTML = `
-		<div class="div_cadastro"> 
+		<form class="div_cadastro" autocomplete="off"> 
 			<div class="novo_frentista"> 
 				<label for="novo_ID"> Novo ID: </label> 
 				<input type="number" id="novo_ID"> 
@@ -88,7 +88,7 @@ function campo_cadastro() {
 				<input type="button" value="Salvar" id="save"> 
 				<input type="button" value="Sair" id="sair"> 
 			</div> 
-		</div>
+		</form>
 	`
 
 	document.body.appendChild(back_div)
@@ -99,9 +99,9 @@ function campo_cadastro() {
 	const gerente = document.querySelector("#gerente")
 
 	const sair = document.querySelector("#sair")
-	sair.addEventListener("click", remover_cadastro)
+	sair.addEventListener("click", closeForm)
 
-	function remover_cadastro() {
+	function closeForm() {
 		let res = true
 		if (novo_ID.value != "" || novo_nome.value != "" || nova_senha.value != "") {
 			res = confirm("Todos os valores atuais serão perdidos. Tem certeza que deseja sair?")
