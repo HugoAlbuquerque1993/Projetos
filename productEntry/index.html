@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Sistema de Estoque</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+	<body>
+		<section class="inputSection" id="inputSection">
+			<h1>Dar Entrada</h1>
+
+			<select name="Categoria" class="categorySelectInput" id="categorySelectInput">
+				<option value="Todas">Todas Categorias</option>
+			</select>
+
+			<select name="Produtos" id="productSelectInput">
+				<option value="notFound">Não Encontrado</option>
+			</select>
+
+			<div>
+				<div class="quantityInputs">
+					<input type="button" value="-" />
+					<input type="button" value="--" />
+					<input type="button" value="++" />
+					<input type="button" value="+" />
+				</div>
+
+				<div>
+					Dar entrada em:
+					<span id="quantityEntrySpan">0</span>
+				</div>
+
+				<input id="sendToListButton" type="button" value="Enviar" />
+
+				<span class="quantityWarnSpan" id="quantityWarnSpan">Quantidade informada não é multiplo do pack.</span>
+			</div>
+		</section>
+		<table class="resultTable" id="resultTable">
+			<tr>
+				<th>Código</th>
+				<th>Nome</th>
+				<th>Qtd</th>
+			</tr>
+		</table>
+		<script src="script.js"></script>
+	</body>
+</html>

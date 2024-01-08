@@ -1,0 +1,73 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@100;400;700&display=swap");
+
+:root {
+	--mainFont: "Roboto", sans-serif;
+}
+* {
+	padding: 0;
+	margin: 0;
+	box-sizing: border-box;
+}
+body {
+	background-color: #0f0f0f;
+	color: white;
+	width: 100%;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	padding: 8px;
+	font-family: var(--mainFont);
+}
+.inputSection {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 8px;
+	padding: 8px 16px;
+	background-color: brown;
+	height: fit-content;
+	border-radius: 4px;
+	width: 380px;
+}
+.inputSection select {
+	width: 100%;
+}
+.inputSection > div {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 4px;
+}
+.categorySelectInput,
+.categorySelectInput > option {
+	font-weight: bold;
+}
+input,
+select {
+	padding: 4px 8px;
+	border-radius: 4px 8px;
+	cursor: pointer;
+}
+.quantityWarnSpan {
+	display: none;
+}
+
+.resultTable {
+	width: 380px;
+	border-collapse: collapse;
+}
+.resultTable * {
+	border: 1px solid white;
+	padding: 4px 8px;
+}
+.resultTable {
+	font-weight: 400;
+}
+.resultTable > tr:not(:first-child) {
+	cursor: pointer;
+}
+.resultTable > *:nth-child(even) {
+	background-color: #003030;
+}
