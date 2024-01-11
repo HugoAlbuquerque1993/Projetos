@@ -51,6 +51,9 @@ body {
 	width: 90%;
 	top: 12px;
 }
+.backgroundBtn {
+	cursor: pointer;
+}
 .openCloseBtn {
 	cursor: pointer;
 	transition: 0.8s;
@@ -73,7 +76,7 @@ select,
 option {
 	color: #fff;
 	border-radius: 5px;
-	padding: 8px 16px;
+	padding: 8px 12px;
 	font-family: "Lato", sans-serif;
 	font-weight: 500;
 	cursor: pointer;
@@ -113,11 +116,11 @@ button:hover {
 	width: 380px;
 	border-collapse: collapse;
 	font-weight: 400;
-	font-size: 0.8rem;
+	font-size: 0.7rem;
 	backdrop-filter: blur(4px);
 }
 .resultTable * {
-	border: 1px solid white;
+	border: 2px solid white;
 	padding: 4px 8px;
 }
 .resultTable > * {
@@ -129,6 +132,21 @@ button:hover {
 .resultTable > *:nth-child(even) {
 	background-color: #30303090;
 }
+.resultTable > tr td:nth-child(2) {
+	width: 280px;
+}
+.tdWarn {
+	background-color: #ff0000;
+}
+
+@media (min-width:900px) {
+	body {
+		flex-direction: row;
+		align-items: start;
+		gap: 100px;
+		justify-content: center;
+	}
+}
 
 @media print {
 	.inputSection {
@@ -136,5 +154,12 @@ button:hover {
 	}
 	body {
 		color: black;
+	}
+	.resultTable {
+		font-size: 1rem;
+		width: 600px;
+	}
+	.resultTable > tr td:nth-child(2) {
+		width: 500px;
 	}
 }

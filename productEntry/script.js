@@ -200,7 +200,8 @@ async function createTableRow(item, quantity) {
 	tableRow.dataset.codigo = item.codigo
 	appendTableData(tableRow, item.codigo)
 	appendTableData(tableRow, item.nome)
-	appendTableData(tableRow, quantity)
+	const tdWarn = calcQuantityWarn()
+	appendTableData(tableRow, quantity, tdWarn)
 	tableRow.addEventListener("click", removeTableRow)
 
 	function removeTableRow() {
@@ -267,16 +268,17 @@ async function refactorArray(filterArray, item) {
 	return newArray
 }
 
-function appendTableData(tableRow, dataText) {
+function appendTableData(tableRow, dataText, warn) {
 	const tableData = document.createElement("td")
+	if (warn == true) tableData.classList.add("tdWarn")
 	tableData.innerHTML = dataText
 	tableRow.appendChild(tableData)
 }
 
 function dateFormat() {
+	const date = new Date()
 	const timeDiv = document.querySelector("[data-displayTime]")
 	const options = { dateStyle: "long", timeStyle: "short" }
-	const date = new Date()
 	currentDay = Intl.DateTimeFormat("pt-br", options).format(date)
 	timeDiv.innerHTML = currentDay
 }
@@ -331,3 +333,15 @@ function backgroundToggle() {
 		backgroundImageUrl = true
 	}
 }
+
+// const screenshotBtn = document.querySelector("#screenshotBtn")
+// screenshotBtn.addEventListener("click", handleScreenshot)
+// function handleScreenshot() {
+// 	const screenshotSection = document.querySelector(".screenshotSection")
+// 	html2canvas(screenshotSection).then(
+// 		function (canvas) {
+// 			document
+// 			.getElementById('output')
+// 			.appendChild(canvas);
+// 		})
+// }
