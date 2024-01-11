@@ -9,36 +9,42 @@ categorySelectInput.addEventListener("change", filterList)
 const quantityEntrySpan = document.querySelector("#quantityEntrySpan")
 const quantityWarnSpan = document.querySelector("#quantityWarnSpan")
 
-const quantityInputs = [...document.querySelectorAll(".quantityInputs > input")]
+const quantityInputs = [...document.querySelectorAll(".quantityInputs > button")]
 quantityInputs.forEach((el) => {
 	el.addEventListener("click", quantityManager)
 })
 
-let loaded = 0
+let loaded = false
 let localBdd = new Array()
 let currentCategory = "Todas"
 let currentItem = undefined
 let currentQuantity = 0
 let itemList = new Array()
 let tableRowList = new Array()
+let currentDay = undefined
+let backgroundImageUrl = true
 
 function resetParams() {
 	currentItem = undefined
 	currentQuantity = 0
 	quantityEntrySpan.innerHTML = 0
-	calcQuantityWarn()
+	isWarnText(calcQuantityWarn())
 }
 
 function calcQuantityWarn() {
 	if (currentQuantity > 0) {
 		if (currentQuantity % currentItem.pack === 0) {
-			quantityWarnSpan.style.display = "none"
+			return false
 		} else {
-			quantityWarnSpan.style.display = "flex"
+			return true
 		}
 	} else {
-		quantityWarnSpan.style.display = "none"
+		return false
 	}
+}
+
+function isWarnText(warn) {
+	warn ? (quantityWarnSpan.style.opacity = 1) : (quantityWarnSpan.style.opacity = 0)
 }
 
 async function firstLoad() {
@@ -77,7 +83,7 @@ async function loadList(dataArray, optElement, catElement, filter) {
 			}
 		})
 	}
-	if (loaded == 0) loaded = 1
+	if (loaded === false) loaded = true
 }
 
 function selectAnItemOpt(optElement) {
@@ -91,7 +97,7 @@ function selectAnItemOpt(optElement) {
 }
 
 function createCategory(item, optElement, catElement) {
-	if (!loaded) {
+	if (loaded === false) {
 		createOption(item["categoria"], catElement, item)
 	}
 
@@ -130,7 +136,7 @@ function handleQuantity(quantity) {
 	if (quantity < 0) quantity = 0
 	quantityEntrySpan.innerHTML = quantity
 	currentQuantity = quantity
-	calcQuantityWarn()
+	isWarnText(calcQuantityWarn())
 }
 
 function findItem(name) {
@@ -159,7 +165,7 @@ function findItem(name) {
 function quantityManager(e) {
 	if (currentItem) {
 		let result = 0
-		switch (e.target.value) {
+		switch (e.target.innerHTML) {
 			case "-":
 				result = currentQuantity - 1
 				break
@@ -181,6 +187,8 @@ sendToListButton.addEventListener("click", handleSendToList)
 function handleSendToList() {
 	if (currentItem != undefined && currentQuantity > 0) {
 		createTableRow(currentItem, currentQuantity)
+	} else {
+		alert("Selecione um item para enviar.")
 	}
 }
 
@@ -222,7 +230,7 @@ function removeFromList(item, list) {
 		}
 	})
 	list.splice(index, 1)
-    resultTable.removeChild(item.tableRow)
+	resultTable.removeChild(item.tableRow)
 }
 
 function clearTable() {
@@ -238,16 +246,18 @@ async function refactorArray(filterArray, item) {
 	let newArray = new Array()
 	let memo = 0
 	newArray = filterArray.filter((el, ind) => {
+		console.log(filterArray)
 		if (el.codigo === item.codigo) {
 			if (memo === 0) {
 				memo = item
 				return item
+			} else {
+				alert(`Quantidade do item '${item.nome}' atualizada.`)
 			}
 		} else {
 			return el
 		}
 	})
-	console.log(newArray)
 	function compareByCode(a, b) {
 		return parseInt(a.codigo) - parseInt(b.codigo)
 	}
@@ -259,4 +269,59 @@ function appendTableData(tableRow, dataText) {
 	const tableData = document.createElement("td")
 	tableData.innerHTML = dataText
 	tableRow.appendChild(tableData)
+}
+
+function dateFormat() {
+	const timeDiv = document.querySelector("[data-displayTime]")
+	const options = { dateStyle: "long", timeStyle: "short" }
+	const date = new Date()
+	currentDay = Intl.DateTimeFormat("pt-br", options).format(date)
+	timeDiv.innerHTML = currentDay
+}
+dateFormat()
+
+const inputSection = document.querySelector(".inputSection")
+const openCloseBtn = document.querySelector(".openCloseBtn")
+openCloseBtn.addEventListener("click", openCloseAction)
+function openCloseAction() {
+	openCloseBtn.classList.toggle("top")
+	inputSection.classList.toggle("hidden")
+}
+
+const saveListBtn = document.querySelector("#saveListBtn")
+saveListBtn.addEventListener("click", handleSaveList)
+function handleSaveList() {
+	alert("<SaveList/> Funcionalidade ainda não implementada (em desenvolvimento).")
+}
+
+const deleteListBtn = document.querySelector("#deleteListBtn")
+deleteListBtn.addEventListener("click", handleDeleteList)
+function handleDeleteList() {
+	if (itemList.length > 0) {
+		const res = confirm("Deseja apagar todos os itens enviados?")
+		if (res) {
+			itemList = new Array()
+			clearTable()
+		}
+	} else {
+		alert("Não há itens a serem excluídos.")
+	}
+}
+
+const printListBtn = document.querySelector("#printListBtn")
+printListBtn.addEventListener("click", handlePrintList)
+function handlePrintList() {
+	itemList.length > 0 ? window.print() : alert("Não há itens para serem impressos.")
+}
+
+const backgroundBtn = document.querySelector(".backgroundBtn")
+backgroundBtn.addEventListener("click", backgroundToggle)
+function backgroundToggle() {
+	if (backgroundImageUrl == true) {
+		document.body.style.backgroundImage = "var(--gradient)"
+		backgroundImageUrl = false
+	} else {
+		document.body.style.backgroundImage = "var(--imageUrl)"
+		backgroundImageUrl = true
+	}
 }
