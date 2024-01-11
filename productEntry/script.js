@@ -54,6 +54,7 @@ async function firstLoad() {
 			localBdd = res
 			selectAnItemOpt(productSelectInput)
 			loadList(localBdd, productSelectInput, categorySelectInput)
+			dateFormat()
 		})
 		.catch((err) => {
 			console.warn("Não foi possível carregar o Banco de Dados. " + err)
@@ -186,6 +187,7 @@ const sendToListButton = document.querySelector("#sendToListButton")
 sendToListButton.addEventListener("click", handleSendToList)
 function handleSendToList() {
 	if (currentItem != undefined && currentQuantity > 0) {
+		dateFormat()
 		createTableRow(currentItem, currentQuantity)
 	} else {
 		alert("Selecione um item para enviar.")
@@ -278,7 +280,6 @@ function dateFormat() {
 	currentDay = Intl.DateTimeFormat("pt-br", options).format(date)
 	timeDiv.innerHTML = currentDay
 }
-dateFormat()
 
 const inputSection = document.querySelector(".inputSection")
 const openCloseBtn = document.querySelector(".openCloseBtn")
@@ -311,7 +312,12 @@ function handleDeleteList() {
 const printListBtn = document.querySelector("#printListBtn")
 printListBtn.addEventListener("click", handlePrintList)
 function handlePrintList() {
-	itemList.length > 0 ? window.print() : alert("Não há itens para serem impressos.")
+	if (itemList.length > 0) {
+		dateFormat()
+		window.print()
+	} else {
+		alert("Não há itens a serem impressos.")
+	}
 }
 
 const backgroundBtn = document.querySelector(".backgroundBtn")
