@@ -26,6 +26,9 @@ body {
 	padding: 4px;
 	font-family: var(--mainFont);
 }
+body.noBg {
+	background-image: var(--gradient);
+}
 .inputSection {
 	display: flex;
 	flex-direction: column;
@@ -35,7 +38,8 @@ body {
 	background-image: radial-gradient(circle at 23.75% 23.75%, #5d594881 0, #2c2500 50%, #050000 100%);
 	border-radius: 4px 8px;
 	width: 380px;
-	height: clamp(42px, 240px, 240px);
+	height: 270px;
+	max-height: fit-content;
 	position: relative;
 	overflow: hidden;
 	transition: height 0.5s ease-in-out;
@@ -102,10 +106,20 @@ button:hover {
 	opacity: 0;
 	user-select: none;
 }
-.actionBtns {
+.actionsManager > div {
 	display: flex;
-	width: 100%;
+	gap: 10px;
 	justify-content: space-between;
+}
+.actionsManager label {
+	border: 2px solid #ffffff80;
+	padding: 4px 8px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.actionsManager label input[type="checkbox"] {
+	padding: 20px;
+	scale: 1.1;
 }
 
 .establishmentInfo {
@@ -116,7 +130,7 @@ button:hover {
 	width: 380px;
 	border-collapse: collapse;
 	font-weight: 400;
-	font-size: 0.7rem;
+	font-size: 0.75rem;
 	backdrop-filter: blur(4px);
 }
 .resultTable * {
@@ -124,42 +138,58 @@ button:hover {
 	padding: 4px 8px;
 }
 .resultTable > * {
-	background-color: #03030370;
+	background-color: #03030390;
 }
-.resultTable > tr:not(:first-child) {
+.resultTable tbody tr {
 	cursor: pointer;
 }
-.resultTable > *:nth-child(even) {
-	background-color: #30303090;
+.resultTable > tbody > *:nth-child(odd) {
+	background-color: #303030d0;
 }
-.resultTable > tr td:nth-child(2) {
-	width: 280px;
+.resultTable tr > *:nth-child(2) {
+	min-width: 280px;
+}
+.resultTable #resultFooter.hidden {
+	display: none;
 }
 .tdWarn {
 	background-color: #ff0000;
 }
-
-@media (min-width:900px) {
-	body {
-		flex-direction: row;
-		align-items: start;
-		gap: 50px;
-		justify-content: center;
-	}
+#resultTableBody.hideWarning .tdWarn {
+	background-color: transparent;
 }
 
 @media print {
-	.inputSection {
-		display: none;
-	}
 	body {
-		color: black;
+	  height: fit-content;
+	  color: black;
+	}
+	.inputSection {
+	  display: none;
 	}
 	.resultTable {
-		font-size: 1rem;
-		width: 500px;
+	  font-size: 0.6rem;
+	  width: 270px;
 	}
 	.resultTable > tr td:nth-child(2) {
-		width: 400px;
+	  width: fit-content;
 	}
+  }
+
+.modalOverlay {
+	position: absolute;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	inset: 0;
+	z-index: 1000;
+	background-color: #00000080;
+}
+.modalContent {
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+	padding: 10px 20px;
+	border-radius: 10px;
+	background-color: #afafaf80;
 }

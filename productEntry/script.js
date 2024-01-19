@@ -6,9 +6,9 @@ productSelectInput.addEventListener("change", selectedProduct)
 const categorySelectInput = document.querySelector("#categorySelectInput")
 categorySelectInput.addEventListener("change", filterList)
 
+const resultTableBody = document.querySelector("#resultTableBody")
 const quantityEntrySpan = document.querySelector("#quantityEntrySpan")
 const quantityWarnSpan = document.querySelector("#quantityWarnSpan")
-
 const quantityInputs = [...document.querySelectorAll(".quantityInputs > button")]
 quantityInputs.forEach((el) => {
 	el.addEventListener("click", quantityManager)
@@ -16,13 +16,14 @@ quantityInputs.forEach((el) => {
 
 let loaded = false
 let localBdd = new Array()
-let currentCategory = "Todas"
+let currentCategory = "allCategories"
 let currentItem = undefined
 let currentQuantity = 0
 let itemList = new Array()
 let tableRowList = new Array()
 let currentDay = undefined
 let backgroundImageUrl = true
+let = new Array()
 
 function resetParams() {
 	currentItem = undefined
@@ -47,17 +48,14 @@ function isWarnText(warn) {
 	warn ? (quantityWarnSpan.style.opacity = 1) : (quantityWarnSpan.style.opacity = 0)
 }
 
-async function firstLoad() {
-	await fetch(myPath)
-		.then((res) => res.json())
-		.then((res) => {
-			localBdd = res
+function firstLoad() {
+	fetch(myPath)
+		.then((el) => el.json())
+		.then((el) => {
+			localBdd = el
 			selectAnItemOpt(productSelectInput)
 			loadList(localBdd, productSelectInput, categorySelectInput)
 			dateFormat()
-		})
-		.catch((err) => {
-			console.warn("Não foi possível carregar o Banco de Dados. " + err)
 		})
 }
 firstLoad()
@@ -75,7 +73,7 @@ async function loadList(dataArray, optElement, catElement, filter) {
 					})
 				}
 			} else {
-				currentCategory = "Todas"
+				currentCategory = "allCategories"
 				if (item.categoria) {
 					createCategory(item, optElement, catElement)
 				} else {
@@ -118,7 +116,7 @@ function createOption(name, element, item) {
 function filterList() {
 	resetParams()
 	const filter = categorySelectInput.value
-	if (filter == "Todas") {
+	if (filter == "allCategories") {
 		selectAnItemOpt(productSelectInput)
 		loadList(localBdd, productSelectInput, categorySelectInput)
 	} else {
@@ -141,7 +139,7 @@ function handleQuantity(quantity) {
 }
 
 function findItem(name) {
-	if (currentCategory == "Todas") {
+	if (currentCategory == "allCategories") {
 		localBdd.forEach((category) => {
 			category["itens"].filter((item) => {
 				if (item.nome == name) {
@@ -175,6 +173,9 @@ function quantityManager(e) {
 				break
 			case "++":
 				result = currentQuantity + currentItem.pack
+				if (result >= currentItem.pack * 11 && result <= currentItem.pack * 12 - 1) {
+					alert("Aviso: Quantidade excede padrões de entrada!")
+				}
 				break
 			case "+":
 				result = currentQuantity + 1
@@ -185,47 +186,71 @@ function quantityManager(e) {
 }
 const sendToListButton = document.querySelector("#sendToListButton")
 sendToListButton.addEventListener("click", handleSendToList)
-function handleSendToList() {
+async function handleSendToList() {
 	if (currentItem != undefined && currentQuantity > 0) {
+		let stateItem = currentItem
+		stateItem.quantidadeEnviada = currentQuantity
+		stateItem.tdWarn = calcQuantityWarn()
+
+		itemList.push(stateItem)
+		itemList = await refactorArray(itemList, stateItem)
+		
+		displayList(itemList)
 		dateFormat()
-		createTableRow(currentItem, currentQuantity)
 	} else {
-		alert("Selecione um item para enviar.")
+		alert("Selecione um item e a quantidade para enviar.")
 	}
 }
 
-const resultTable = document.querySelector("#resultTable")
-async function createTableRow(item, quantity) {
+function createTableRow(item) {
 	const tableRow = document.createElement("tr")
 	tableRow.dataset.codigo = item.codigo
 	appendTableData(tableRow, item.codigo)
 	appendTableData(tableRow, item.nome)
-	const tdWarn = calcQuantityWarn()
-	appendTableData(tableRow, quantity, tdWarn)
+	appendTableData(tableRow, item.quantidadeEnviada, item.tdWarn)
 	tableRow.addEventListener("click", removeTableRow)
-
+	
 	function removeTableRow() {
 		const remove = confirm(`Remover ${item.nome}?`)
 		if (remove) {
-			removeFromList(item, itemList)
+			removeFromList(item, itemList, tableRow)
+			totalCount()
 		}
 	}
 
-	item.tableRow = tableRow
-	itemList.push(item)
-
-	itemList = await refactorArray(itemList, item)
-	displayList(itemList)
+	return tableRow
 }
 
-function displayList(list) {
-	clearTable()
-	list.forEach((el) => {
-		resultTable.appendChild(el.tableRow)
+function appendTableData(tableRow, dataText, warn) {
+	const tableData = document.createElement("td")
+	if (warn == true) tableData.classList.add("tdWarn")
+	tableData.innerHTML = dataText
+	tableRow.appendChild(tableData)
+}
+
+function totalCount(list = itemList) {
+	;[...document.querySelectorAll("#resultFooter th")].map((td, ind) => {
+		if (ind == 1) td.innerHTML = list.length
+		if (ind == 2) {
+			let total = 0
+			itemList.forEach((item) => {
+				total += item.quantidadeEnviada
+			})
+			td.innerHTML = total
+		}
 	})
 }
 
-function removeFromList(item, list) {
+function displayList(list = itemList) {
+	clearTable()
+	totalCount()
+	list.forEach((item) => {
+		const tableRow = createTableRow(item)
+		resultTableBody.appendChild(tableRow)
+	})
+}
+
+function removeFromList(item, list, tableRow) {
 	let index
 	list.filter((el, ind) => {
 		if (el.codigo === item.codigo) {
@@ -233,15 +258,13 @@ function removeFromList(item, list) {
 		}
 	})
 	list.splice(index, 1)
-	resultTable.removeChild(item.tableRow)
+	resultTableBody.removeChild(tableRow)
 }
 
 function clearTable() {
-	const createdTableRows = [...document.querySelectorAll("#resultTable tr")]
+	const createdTableRows = [...document.querySelectorAll("#resultTableBody tr")]
 	createdTableRows.forEach((el, ind) => {
-		if (ind > 0) {
-			resultTable.removeChild(el)
-		}
+		resultTableBody.removeChild(el)
 	})
 }
 
@@ -249,7 +272,6 @@ async function refactorArray(filterArray, item) {
 	let newArray = new Array()
 	let memo = 0
 	newArray = filterArray.filter((el, ind) => {
-		console.log(filterArray)
 		if (el.codigo === item.codigo) {
 			if (memo === 0) {
 				memo = item
@@ -261,18 +283,10 @@ async function refactorArray(filterArray, item) {
 			return el
 		}
 	})
-	function compareByCode(a, b) {
-		return parseInt(a.codigo) - parseInt(b.codigo)
-	}
-	newArray.sort(compareByCode)
-	return newArray
-}
 
-function appendTableData(tableRow, dataText, warn) {
-	const tableData = document.createElement("td")
-	if (warn == true) tableData.classList.add("tdWarn")
-	tableData.innerHTML = dataText
-	tableRow.appendChild(tableData)
+	return newArray.sort((a, b) => {
+		return parseInt(a.codigo) - parseInt(b.codigo)
+	})
 }
 
 function dateFormat() {
@@ -291,10 +305,95 @@ function openCloseAction() {
 	inputSection.classList.toggle("hidden")
 }
 
-const saveListBtn = document.querySelector("#saveListBtn")
-saveListBtn.addEventListener("click", handleSaveList)
-function handleSaveList() {
-	alert("<SaveList/> Funcionalidade ainda não implementada (em desenvolvimento).")
+const memoryBtn = document.querySelector("#memoryBtn")
+memoryBtn.addEventListener("click", handleMemoryAccess)
+function handleMemoryAccess() {
+	const modal = createModal(document.body)
+	modalSaveBtns(modal)
+}
+
+function myButton(parentEl, func, txt, title) {
+	let button
+	button = document.createElement("button")
+	button.innerHTML = txt || "myButton"
+	button.title = title
+	button.addEventListener("click", func)
+
+	parentEl.appendChild(button)
+	return button
+}
+
+function createModal(parentEl) {
+	const overlay = document.createElement("div")
+	overlay.className = "modalOverlay"
+	overlay.addEventListener("click", (e) => {
+		if (e.target.className == "modalOverlay") {
+			closeModal()
+		}
+	})
+	overlay.closeModal = () => {
+		closeModal()
+	}
+
+	const content = document.createElement("div")
+	content.className = "modalContent"
+
+	overlay.content = content
+	overlay.appendChild(content)
+	parentEl.appendChild(overlay)
+
+	function closeModal() {
+		parentEl.removeChild(overlay)
+	}
+
+	return overlay
+}
+
+function modalSaveBtns(overlay) {
+	function handleSave() {
+		if (itemList.length > 0) {
+			let res = true
+			if(localStorage.currentSavedList) {
+				res = confirm("Sobrescrever a última lista salva?")
+			}
+			if (!res) return overlay.closeModal()
+			localStorage.currentSavedList = JSON.stringify(itemList)
+			console.log(localStorage.currentSavedList)
+			alert("Salvo com sucesso.")
+		} else {
+			alert("Não é necessária salvar listas vazias.")
+		}
+		overlay.closeModal()
+	}
+
+	function handleLoad() {
+		if (localStorage.currentSavedList) {
+			const res = confirm("Esta ação apagará a lista atual e carregará a lista salva na memória. Prosseguir?")
+			if (res) callDisplay()
+		} else {
+			alert("Nenhuma lista salva na memória.")
+		}
+		overlay.closeModal()
+	}
+
+	function handleTrash() {
+		if (localStorage.currentSavedList) {
+			const res = confirm("Esta ação apagará a lista da memória. Prosseguir?")
+			if (res) localStorage.clear(localStorage.currentSavedList)
+		}
+		overlay.closeModal()
+	}
+
+	let button1 = myButton(overlay.content, handleSave, "Salvar", "Salvar lista atual na memória.")
+
+	let button2 = myButton(overlay.content, handleLoad, "Carregar", "Carregar última lista salva.")
+
+	let button3 = myButton(overlay.content, handleTrash, "Deletar", "Excluir a lista da memória.")
+
+	function callDisplay() {
+		itemList = JSON.parse(localStorage.currentSavedList)
+		displayList()
+	}
 }
 
 const deleteListBtn = document.querySelector("#deleteListBtn")
@@ -305,6 +404,7 @@ function handleDeleteList() {
 		if (res) {
 			itemList = new Array()
 			clearTable()
+			totalCount()
 		}
 	} else {
 		alert("Não há itens a serem excluídos.")
@@ -325,13 +425,17 @@ function handlePrintList() {
 const backgroundBtn = document.querySelector(".backgroundBtn")
 backgroundBtn.addEventListener("click", backgroundToggle)
 function backgroundToggle() {
-	if (backgroundImageUrl == true) {
-		document.body.style.backgroundImage = "var(--gradient)"
-		backgroundImageUrl = false
-	} else {
-		document.body.style.backgroundImage = "var(--imageUrl)"
-		backgroundImageUrl = true
-	}
+	document.body.classList.toggle("noBg")
+}
+const totalCheckbox = document.querySelector("#totalCheckbox")
+totalCheckbox.addEventListener("change", () => {
+	document.querySelector("#resultFooter").classList.toggle("hidden")
+})
+
+const toggleWarnCheckbox = document.querySelector("#toggleWarnCheckbox")
+toggleWarnCheckbox.addEventListener("click", handleToggleWarn)
+function handleToggleWarn() {
+	resultTableBody.classList.toggle("hideWarning")
 }
 
 // const screenshotBtn = document.querySelector("#screenshotBtn")

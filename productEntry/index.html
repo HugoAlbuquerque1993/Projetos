@@ -6,7 +6,6 @@
 		<title>Sistema de Estoque</title>
 		<link rel="stylesheet" href="style.css" />
 		<script src="https://kit.fontawesome.com/f5dd4dba75.js" crossorigin="anonymous"></script>
-		<script src="https://cdn.jsdelivr.net/npm/html2canvas@1.0.0-rc.5/dist/html2canvas.min.js"></script>
 	</head>
 	<body>
 		<section class="inputSection" id="inputSection">
@@ -19,7 +18,7 @@
 			<h1>Entrada na Loja</h1>
 
 			<select name="Categoria" class="categorySelectInput" id="categorySelectInput">
-				<option value="Todas">Todas Categorias</option>
+				<option value="allCategories">Todas Categorias</option>
 			</select>
 
 			<select name="Produtos" id="productSelectInput">
@@ -49,7 +48,7 @@
 				</span>
 
 				<div class="actionBtns">
-					<button id="saveListBtn" title="Salvar lista.">
+					<button id="memoryBtn" title="Gerenciar memória.">
 						<i class="fa-regular fa-floppy-disk fa-lg"></i>
 					</button>
 
@@ -63,14 +62,20 @@
 						<i class="fa-regular fa-paper-plane fa-lg"></i>
 					</button>
 
-					<!-- <button id="screenshotBtn" title="Tirar uma foto da tela (screenshot) da tabela.">
-						<b>Print</b>
-						<i class="fa-solid fa-print fa-lg"></i>
-					</button> -->
-
 					<button id="deleteListBtn" title="Excluir todos os itens enviados.">
 						<i class="fa-regular fa-trash-can fa-lg"></i>
 					</button>
+				</div>
+
+				<div>
+					<label for="totalCheckbox" title="Exibir os totais de item e quantidade na parte inferior da tabela.">
+						<input type="checkbox" id="totalCheckbox" checked />
+						Mostrar Total
+					</label>
+					<label for="toggleWarnCheckbox" title="Mostra uma cor de destaque para todos os itens adicionados que não forem múltiplos do pack.">
+						<input type="checkbox" id="toggleWarnCheckbox" checked />
+						Cor do Aviso
+					</label>
 				</div>
 			</div>
 		</section>
@@ -81,7 +86,7 @@
 				<div data-displayTime>Data e hora não identificados.</div>
 			</div>
 
-			<table class="resultTable" id="resultTable">
+			<table class="resultTable">
 				<thead>
 					<tr>
 						<th>Código</th>
@@ -89,6 +94,12 @@
 						<th>Qtd</th>
 					</tr>
 				</thead>
+				<tbody id="resultTableBody"></tbody>
+				<tfoot id="resultFooter">
+					<th>Total:</th>
+					<th>0</th>
+					<th>0</th>
+				</tfoot>
 			</table>
 
 			<div id="output"></div>
