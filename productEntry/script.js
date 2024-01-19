@@ -437,15 +437,3 @@ toggleWarnCheckbox.addEventListener("click", handleToggleWarn)
 function handleToggleWarn() {
 	resultTableBody.classList.toggle("hideWarning")
 }
-
-// const screenshotBtn = document.querySelector("#screenshotBtn")
-// screenshotBtn.addEventListener("click", handleScreenshot)
-// function handleScreenshot() {
-// 	const screenshotSection = document.querySelector(".screenshotSection")
-// 	html2canvas(screenshotSection).then(
-// 		function (canvas) {
-// 			document
-// 			.getElementById('output')
-// 			.appendChild(canvas);
-// 		})
-// }
