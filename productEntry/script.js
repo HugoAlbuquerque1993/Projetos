@@ -186,15 +186,15 @@ function quantityManager(e) {
 }
 const sendToListButton = document.querySelector("#sendToListButton")
 sendToListButton.addEventListener("click", handleSendToList)
-async function handleSendToList() {
+function handleSendToList() {
 	if (currentItem != undefined && currentQuantity > 0) {
 		let stateItem = currentItem
 		stateItem.quantidadeEnviada = currentQuantity
 		stateItem.tdWarn = calcQuantityWarn()
 
 		itemList.push(stateItem)
-		itemList = await refactorArray(itemList, stateItem)
-		
+		itemList = refactorArray(itemList, stateItem)
+
 		displayList(itemList)
 		dateFormat()
 	} else {
@@ -209,7 +209,7 @@ function createTableRow(item) {
 	appendTableData(tableRow, item.nome)
 	appendTableData(tableRow, item.quantidadeEnviada, item.tdWarn)
 	tableRow.addEventListener("click", removeTableRow)
-	
+
 	function removeTableRow() {
 		const remove = confirm(`Remover ${item.nome}?`)
 		if (remove) {
@@ -268,19 +268,24 @@ function clearTable() {
 	})
 }
 
-async function refactorArray(filterArray, item) {
+/**
+ * @param {object[]} arrayToFilter
+ * @param {object} itemToCompare
+ * @returns {object[]} Return a refactored array.
+ */
+function refactorArray(arrayToFilter, itemToCompare) {
 	let newArray = new Array()
 	let memo = 0
-	newArray = filterArray.filter((el, ind) => {
-		if (el.codigo === item.codigo) {
+	newArray = arrayToFilter.filter((arrayItem) => {
+		if (arrayItem.codigo === itemToCompare.codigo) {
 			if (memo === 0) {
-				memo = item
-				return item
+				memo = 1
+				return itemToCompare
 			} else {
-				alert(`Quantidade do item '${item.nome}' atualizada.`)
+				alert(`Quantidade do item '${itemToCompare.nome}' atualizada.`)
 			}
 		} else {
-			return el
+			return arrayItem
 		}
 	})
 
@@ -353,7 +358,7 @@ function modalSaveBtns(overlay) {
 	function handleSave() {
 		if (itemList.length > 0) {
 			let res = true
-			if(localStorage.currentSavedList) {
+			if (localStorage.currentSavedList) {
 				res = confirm("Sobrescrever a última lista salva?")
 			}
 			if (!res) return overlay.closeModal()
@@ -391,7 +396,11 @@ function modalSaveBtns(overlay) {
 	let button3 = myButton(overlay.content, handleTrash, "Deletar", "Excluir a lista da memória.")
 
 	function callDisplay() {
-		itemList = JSON.parse(localStorage.currentSavedList)
+		let stateArray = JSON.parse(localStorage.currentSavedList)
+		itemList = new Array()
+		stateArray.forEach((el) => {
+			itemList.push(el)
+		})
 		displayList()
 	}
 }
