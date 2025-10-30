@@ -69,8 +69,8 @@ Você é livre para usar, modificar e compartilhar, desde que mantenha os crédi
 
 ## 👨‍💻 Autor
 
-**Hugo Albuquerque** 
-🔗 Meu [LinkedIn](www.linkedin.com/in/hugoalbuquerque1993) | Meu [GitHub](https://github.com/HugoAlbuquerque1993)
+**Hugo Albuquerque**  
+🔗 Meu [LinkedIn](www.linkedin.com/in/hugoalbuquerque1993) | Meu [GitHub](https://github.com/HugoAlbuquerque1993)  
 Desenvolvedor Front-End • Foco em UX/UI e aplicações web intuitivas • Entre em contato!
 
 
