@@ -42,7 +42,6 @@ Trata-se de uma reprodução conceitual da interface do aplicativo de pagamento 
 - Tela de **formas de pagamento** (simulação)  
 
 > As interfaces foram projetadas para oferecer uma **experiência fluida e intuitiva**, com foco na navegação simples e design limpo.
-> A tela de seleção das bombas de combustível conta com uma função que cria bombas e valores simulados, gerados de forma aleatória com parâmetros pré-programados, para possibilitar a visualização do fluxo completo de interação do sistema.
 
 ---
 
