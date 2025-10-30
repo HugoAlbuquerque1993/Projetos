@@ -70,7 +70,7 @@ Você é livre para usar, modificar e compartilhar, desde que mantenha os crédi
 ## 👨‍💻 Autor
 
 **Hugo Albuquerque**  
-🔗 ![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white) [LinkedIn](www.linkedin.com/in/hugoalbuquerque1993)  
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0077B5?style=for-the-badge&logo=linkedin&logoColor=white)](www.linkedin.com/in/hugoalbuquerque1993)  
 Desenvolvedor Front-End • Foco em UX/UI e aplicações web intuitivas • Entre em contato!
 
 
