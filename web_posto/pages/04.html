@@ -1,52 +1,60 @@
 <!DOCTYPE html>
 <html lang="pt-br">
-	<head>
-		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<title>Web Posto Pay</title>
-		<link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
-		<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
-		<link rel="stylesheet" href="../styles/main.css" />
-		<link rel="stylesheet" href="../styles/04.css" />
-	</head>
-	<body>
-		<section>
-			<div class="div_top">
-				<div class="left">
-					<i class="material-symbols-outlined" id="icon_back"> arrow_back </i>
-					<h2>webPostoPay</h2>
-				</div>
-			</div>
-			<div class="div_bot">
-				<div class="div_value">
-					<div class="left">
-						<p>Total a pagar(R$)</p>
-						<span id="total"> </span>
-					</div>
-					<div class="right">
-						<p>Resta a pagar(R$)</p>
-						<span id="rest"> </span>
-					</div>
-				</div>
-				<div class="div_payments">
-					<p id="txt_pay">Pagamentos Realizados</p>
-					<div class="payment_values">
-						<!-- <span> R$ 00,00 - Dinheiro </span>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Web Posto Pay</title>
+    <link rel="shortcut icon" href="../img/favicon.ico" type="image/x-icon" />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0"
+    />
+    <link rel="stylesheet" href="../styles/main.css" />
+    <link rel="stylesheet" href="../styles/04.css" />
+  </head>
+  <body>
+    <section>
+      <div class="div_top">
+        <div class="left">
+          <i class="material-symbols-outlined" id="icon_back"> arrow_back </i>
+          <h2>webPostoPay</h2>
+        </div>
+        <div class="right">
+          <a href="../index.html">
+            <i class="material-symbols-outlined" id="icon_home"> home </i>
+          </a>
+        </div>
+      </div>
+      <div class="div_bot">
+        <div class="div_value">
+          <div class="left">
+            <p>Total a pagar(R$)</p>
+            <span id="total"> </span>
+          </div>
+          <div class="right">
+            <p>Resta a pagar(R$)</p>
+            <span id="rest"> </span>
+          </div>
+        </div>
+        <div class="div_payments">
+          <p id="txt_pay">Pagamentos Realizados</p>
+          <div class="payment_values">
+            <!-- <span> R$ 00,00 - Dinheiro </span>
 						<span> R$ 00,00 - Crédito </span>
 						<span> R$ 00,00 - Débito </span>
 						<span> R$ 00,00 - Dinheiro </span>
 						<span> R$ 00,00 - Débito </span> -->
-					</div>
-				</div>
-				<div class="div_btns">
-					<input type="button" value="DINHEIRO" id="cash" />
-					<input type="button" value="CRÉDITO" id="credit" />
-					<input type="button" value="DÉBITO" id="debit" />
-				</div>
-			</div>
-			<div class="footer"></div>
-		</section>
+          </div>
+        </div>
+        <div class="div_btns">
+          <input type="button" value="DINHEIRO" id="cash" />
+          <input type="button" value="CRÉDITO" id="credit" />
+          <input type="button" value="DÉBITO" id="debit" />
+        </div>
+      </div>
+      <div class="footer"></div>
+    </section>
 
-		<script src="../script/04.js" type="module"></script>
-	</body>
+    <script src="../script/04.js" type="module"></script>
+  </body>
 </html>

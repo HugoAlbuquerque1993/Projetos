@@ -1,12 +1,12 @@
 export function footer_div(div) {
-	let logged
-	if (localStorage.logged != "undefined") {
-		let x = JSON.parse(localStorage.logged)
-		logged = x.name
-	} else {
-		logged = "REALIZE O LOGIN"
-	}
-	div.innerHTML = `
+  let logged
+  if (localStorage.logged != "undefined") {
+    let x = JSON.parse(localStorage.logged)
+    logged = x.name
+  } else {
+    logged = "REALIZE O LOGIN"
+  }
+  div.innerHTML = `
     <div>
       <p> Versão: 23.1.7 </p>
       <p id="txt_clock"> 00:00:00 </p>
@@ -15,34 +15,34 @@ export function footer_div(div) {
       <p id="nome_frentista"> ${logged} </p>
       <p id="txt_today"> 00/00/0000 </p>
     </div>
-    <p> 004 - PDV CIELO LIO (4AC931D52) </p>
+    <p> 004 - PDV CIELO (DEV HUGO ALBUQUERQUE) </p>
   `
 
-	document.querySelector(".footer").style = `
+  document.querySelector(".footer").style = `
     background-color: #fff;
     padding: 2px 20px;
     width: clamp(380px, 100vw, 450px);
     box-shadow: 0px -5px 5px #00000030;
   `
 
-	let son = [...document.querySelectorAll(".footer > div")]
-	son.map((el) => {
-		el.style = `
+  let son = [...document.querySelectorAll(".footer > div")]
+  son.map((el) => {
+    el.style = `
       display: flex;
       justify-content: space-between;
     `
-	})
+  })
 }
 
 export function GoTo_logginDiv(body) {
-	let div = document.createElement("div")
-	div.setAttribute("id", "not_logged_in")
-	div.innerHTML = `
+  let div = document.createElement("div")
+  div.setAttribute("id", "not_logged_in")
+  div.innerHTML = `
     <h2> Não foi possível identificar o usuário. <a href="../index.html" style="color: #00ff00;">Clique aqui</a> para retornar à area de login. </h2>
   `
-	body.appendChild(div)
+  body.appendChild(div)
 
-	document.querySelector("#not_logged_in").style = `
+  document.querySelector("#not_logged_in").style = `
     position: absolute;
     display: flex;
     flex-direction: column;
@@ -59,7 +59,7 @@ export function GoTo_logginDiv(body) {
     z-index: 1000;
   `
 
-	document.querySelector("#not_logged_in h2").style = `
+  document.querySelector("#not_logged_in h2").style = `
     position: relative;
     padding: 20px;
     border-radius: 20px;
@@ -69,9 +69,9 @@ export function GoTo_logginDiv(body) {
 }
 
 export function render_hose(append_div, sale, amount, usd) {
-	let new_hose = document.createElement("div")
-	new_hose.className = "hose"
-	new_hose.innerHTML = `<div class="top">
+  let new_hose = document.createElement("div")
+  new_hose.className = "hose"
+  new_hose.innerHTML = `<div class="top">
 		<i class="material-symbols-outlined">
 		  local_gas_station
 		</i>
@@ -86,23 +86,23 @@ export function render_hose(append_div, sale, amount, usd) {
 		</div>
 	  </div>`
 
-	new_hose.addEventListener("click", () => {
-		localStorage.selected_hose = JSON.stringify(usd)
-		document.location.href = "./03.html"
-	})
-	append_div.appendChild(new_hose)
+  new_hose.addEventListener("click", () => {
+    localStorage.selected_hose = JSON.stringify(usd)
+    document.location.href = "./03.html"
+  })
+  append_div.appendChild(new_hose)
 }
 
 export function render_value(div_bot, page_hose) {
-	let logged = JSON.parse(localStorage.logged)
-	let values = JSON.parse(localStorage.selected_hose)
-	page_hose.innerHTML = values[0].hose
+  let logged = JSON.parse(localStorage.logged)
+  let values = JSON.parse(localStorage.selected_hose)
+  page_hose.innerHTML = values[0].hose
 
-	values.map((sale) => {
-		let new_div = document.createElement("div")
-		new_div.setAttribute("class", "hose_value")
+  values.map((sale) => {
+    let new_div = document.createElement("div")
+    new_div.setAttribute("class", "hose_value")
 
-		new_div.innerHTML = `
+    new_div.innerHTML = `
       <div class="top">
         <div class="top_left">
           R$ ${sale.value}
@@ -132,17 +132,20 @@ export function render_value(div_bot, page_hose) {
         </p>
       </div>
     `
-		div_bot.append(new_div)
-		new_div.addEventListener("click", () => {
-			localStorage.selected_value = JSON.stringify(sale)
-			window.location.href = "04.html"
-		})
-	})
+    div_bot.append(new_div)
+    new_div.addEventListener("click", () => {
+      localStorage.selected_value = JSON.stringify(sale)
+      window.location.href = "04.html"
+    })
+  })
 }
 
 export function partial_menu(el) {
   let sale = JSON.parse(localStorage.selected_value)
   let back = document.createElement("div")
+  let alertMessage =
+    "Até o momento, o desenvolvimento do APP foi até aqui. Se gostou do projeto, gostaria de ver continuidade, ou quer ajudar de alguma forma, entre em contato comigo pelo LinkedIn ou GitHub (links na página inicial). Obrigado!"
+
   back.style = `
     display: flex;
     position: absolute;
@@ -225,7 +228,7 @@ export function partial_menu(el) {
   `
   btn1.innerHTML = "CONFIRMAR"
   btn1.addEventListener("click", () => {
-    alert(input.value)
+    alert(alertMessage)
   })
 
   let btn2 = document.createElement("button")
