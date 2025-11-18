@@ -39,10 +39,10 @@ Web Posto Pay é um aplicativo móvel. O APP funciona em desktop, porém, para u
 ## 🧭 Visão Geral
 
 O **Web Posto Pay Clone** é um projeto web desenvolvido para demonstrar minhas habilidades em **criação de interfaces e funcionalidades front-end** utilizando **HTML, CSS e JavaScript**.  
-Trata-se de uma reprodução conceitual da interface do aplicativo mobile de pagamento por maquininha usado em postos de combustível, simulando as principais interações do sistema real.
+Trata-se de uma reprodução fiel da interface do aplicativo móvel de pagamentos, usado em postos de combustível, simulando as principais interações do sistema real.
 
 > 💡 Este projeto foi **idealizado e desenvolvido integralmente por mim**, de forma independente.  
-> Foi uma **iniciativa pessoal**, criada para exercitar minha capacidade de transformar ideias em interfaces funcionais e intuitivas — sem reutilização de código ou conceito de terceiros.
+> Foi uma **iniciativa pessoal**, criada para exercitar e aprimorar minha capacidade de transformar ideias em interfaces funcionais e intuitivas — sem reutilização de código ou conceito de terceiros.
 
 ---
 
