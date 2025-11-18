@@ -30,9 +30,7 @@ Web Posto Pay é um aplicativo móvel. O APP funciona em desktop, porém, para u
 
 ## 📸 Pré-visualizações
 
-<img alt="Login" src="./img/web_posto_login_popup.png" width="300px" />
-<img alt="Bombas" src="./img/web_posto_bombas_popup.png" width="300px" />
-<img alt="Valores" src="./img/web_posto_valores_popup.png" width="300px" />
+<img alt="Login" src="./img/web_posto_login_popup.png" width="300px" /> <img alt="Bombas" src="./img/web_posto_bombas_popup.png" width="300px" /> <img alt="Valores" src="./img/web_posto_valores_popup.png" width="300px" />
 
 ---
 
