@@ -8,10 +8,31 @@
 
 ---
 
+## 📋 Índice
+
+[🚀 Acesso ao Projeto](#🚀-acesso-ao-projeto)  
+[📸 Pré-visualizações](#📸-pré-visualizações)  
+[🧭 Visão Geral](#🧭-visão-geral)  
+[🧱 Tecnologias Utilizadas](#🧱-tecnologias-utilizadas)  
+[💡 Funcionalidades e Interfaces](#💡-funcionalidades-e-interfaces)  
+[🧠 Objetivos e Aprendizados](#🧠-objetivos-e-aprendizados)  
+[👨‍💻 Autor](#👨‍💻-autor)  
+[📜 Licença](#📜-licença)
+
+---
+
 ## 🚀 Acesso ao Projeto
 
 🔗 [Acesse o Web Posto Pay Clone](https://hugoalbuquerque1993.github.io/web_posto/index.html)  
 Web Posto Pay é um aplicativo móvel. O APP funciona em desktop, porém, para uma melhor experiência, tente abrir o app no smartphone ou utilize extesões de Simulador de Telefone no seu navegador desktop.
+
+---
+
+## 📸 Pré-visualizações
+
+<img alt="Login" src="./img/web_posto_login_popup.png" width="300px" />
+<img alt="Bombas" src="./img/web_posto_bombas_popup.png" width="300px" />
+<img alt="Valores" src="./img/web_posto_valores_popup.png" width="300px" />
 
 ---
 
@@ -48,13 +69,14 @@ Trata-se de uma reprodução conceitual da interface do aplicativo mobile de pag
 
 ---
 
-## 🧠 Aprendizados e Objetivos
+## 🧠 Objetivos e Aprendizados
 
 Durante o desenvolvimento deste projeto, o foco foi:
 
-- Praticar o **desenvolvimento front-end puro** (sem frameworks)
-- Criar uma **navegação funcional** entre múltiplas telas
-- Aplicar princípios de **UX/UI** e design intuitivo
+- Praticar o **desenvolvimento front-end** (HTML, CSS e JavaScript), reforçando fundamentos de **POO** e manipulação do **DOM**.
+- Criar uma **navegação funcional** entre múltiplas telas, simulando o fluxo real de um app original.
+- Aplicar princípios de **UX/UI**, garantindo um design intuitivo, com hierarquia visual clara, uso consistente de espaçamentos, tipografia adequada e feedback visual para as ações do usuário.
+- Implementar **cadastro e validações de resposável**, para que cada colaborador tenha acesso aos seus respectivos abastecimentos.
 
 ---
 
@@ -72,13 +94,5 @@ Desenvolvedor Front-End • Foco em UX/UI e aplicações web intuitivas • Entr
 
 Distribuído sob a licença [MIT License](LICENSE).  
 Você é livre para usar, modificar e compartilhar, desde que mantenha os créditos originais.
-
----
-
-## 📸 Pré-visualizações
-
-![Login](./img/web_posto_login_popup.png)
-![Bombas](./img/web_posto_bombas_popup.png)
-![Valores](./img/web_posto_valores_popup.png)
 
 ---
