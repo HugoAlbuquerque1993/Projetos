@@ -8,18 +8,20 @@
 
 ---
 
+<!--
 ## 📋 Índice
 
-[🚀 Acesso ao Projeto](#🚀-acesso-ao-projeto)  
-[📸 Pré-visualizações](#📸-pré-visualizações)  
-[🧭 Visão Geral](#🧭-visão-geral)  
-[🧱 Tecnologias Utilizadas](#🧱-tecnologias-utilizadas)  
-[💡 Funcionalidades e Interfaces](#💡-funcionalidades-e-interfaces)  
-[🧠 Objetivos e Aprendizados](#🧠-objetivos-e-aprendizados)  
-[👨‍💻 Autor](#👨‍💻-autor)  
+[🚀 Acesso ao Projeto](#🚀-acesso-ao-projeto)
+[📸 Pré-visualizações](#📸-pré-visualizações)
+[🧭 Visão Geral](#🧭-visão-geral)
+[🧱 Tecnologias Utilizadas](#🧱-tecnologias-utilizadas)
+[💡 Funcionalidades e Interfaces](#💡-funcionalidades-e-interfaces)
+[🧠 Objetivos e Aprendizados](#🧠-objetivos-e-aprendizados)
+[👨‍💻 Autor](#👨‍💻-autor)
 [📜 Licença](#📜-licença)
 
 ---
+-->
 
 ## 🚀 Acesso ao Projeto
 
