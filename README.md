@@ -8,10 +8,14 @@
 
 ---
 
-## 🚀 Acesso ao Projeto
+## 🚀 Acesso aos Projetos
 
-🔗 [Acesse o Web Posto Pay Clone](https://github.com/HugoAlbuquerque1993/Projetos/tree/main/web_posto)
+### Web Post Pay Clone: 
+Web Posto Pay é um aplicativo móvel. O APP funciona em desktop, porém, para uma melhor experiência, tente abrir o app no smartphone ou utilize extesões de Simulador de Telefone no seu navegador desktop.  
+🔗 [Acesse o projeto](https://github.com/HugoAlbuquerque1993/Projetos/tree/main/web_posto)
 
-🔗 [Acesse o Product Entry](https://github.com/HugoAlbuquerque1993/Projetos/tree/main/productEntry)
+### Product Entry:  
+APP desktop e mobile, desenvolvido inicialmente para facilitar a criação de planilhas de solicitação de estoque para postos de combustível.  
+🔗 [Acesse o projeto](https://github.com/HugoAlbuquerque1993/Projetos/tree/main/productEntry)
 
 ---
